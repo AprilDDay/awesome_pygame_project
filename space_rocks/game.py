@@ -3,7 +3,7 @@ import pygame
 class SpaceRocks: 
         def _init_(self):
             self._init_pygame()
-            self.screen = pygame.display.set_mode(800, 600)
+            self.screen = pygame.display.set_mode((800, 600))
 
         def main_loop(self): 
             while True: 
