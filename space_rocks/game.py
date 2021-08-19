@@ -28,6 +28,15 @@ class SpaceRocks:
             ):
                 quit()
 
+        is_key_pressed = pygame.key.get_pressed()
+
+        if is_key_pressed[pygame.K_RIGHT]:
+            self.spaceship.rotate(clockwise=True)
+        elif is_key_pressed[pygame.K_LEFT]:
+            self.spaceship.rotate(clockwise=False)
+        if is_key_pressed[pygame.K_UP]:
+            self.spaceship.accelerate()
+            
     def _process_game_logic(self):
         self.spaceship.move()
         self.asteroid.move()
