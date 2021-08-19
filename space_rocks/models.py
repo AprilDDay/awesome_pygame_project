@@ -19,8 +19,8 @@ class GameObject:
         blit_position = self.position - rotated_surface_size * 0.5 
         surface.blit(rotated_surface, blit_position)
 
-    def move(self):
-        self.position = self.position + self.velocity
+    def move(self, surface):
+        self.position = wrap_position(self.position + self.velocity, surface)
 
     def collides_with(self, other_obj):
         distance = self.position.distance_to(other_obj.position)
@@ -38,6 +38,10 @@ class Spaceship(GameObject):
         sign = 1 if clockwise else -1
         angle = self.MANEUVERABILITY * sign
         self.direction.rotate_zip(angle)
-        
+
     def accelerate(self):
         self.velocity += self.direction * self.ACCELERATION
+
+class Asteroid(GameObject):
+    def __init__(self, position):
+        super().__init__(position, load_sprite("asteroid"), (0,0))
