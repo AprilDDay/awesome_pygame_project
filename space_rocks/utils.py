@@ -1,3 +1,4 @@
+from space_rocks.models import GameObject
 from pygame.image import load
 
 def load_sprite(name, with_alpha=True):
