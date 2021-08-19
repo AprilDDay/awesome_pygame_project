@@ -1,16 +1,20 @@
 import pygame
 
 from models import Spaceship, Asteroid
-from utils import load_sprite
+from utils import load_sprite, get_random_position
 
 class SpaceRocks: 
+    MIN_ASTEROID_DISTANCE = 250
+    
     def __init__(self):
         self._init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
         self.background = load_sprite("space", False)
         self.clock = pygame.time.Clock()
         #spaceship & asteroids
-        self.asteroids = [Asteroid((0, 0)) for _ in range(6)]
+        self.asteroids = [
+            Asteroid(get_random_position(self.screen)) for _ in range(6)
+        ]
         self.spaceship = Spaceship((400, 300))
 
     def main_loop(self): 
